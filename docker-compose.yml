@@ -1,0 +1,21 @@
+services:
+  adguard-home-remote:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ghcr.io/${GITHUB_REPOSITORY:-adguard-home-remote}:latest
+    container_name: adguard-home-remote
+    restart: unless-stopped
+    ports:
+      - "${PORT:-3000}:3000"
+    environment:
+      # Configura tus variables en un archivo .env (basado en .env.example)
+      - ADGUARD_URL=${ADGUARD_URL:-}
+      - ADGUARD_USERNAME=${ADGUARD_USERNAME:-}
+      - ADGUARD_PASSWORD=${ADGUARD_PASSWORD:-}
+      - PORT=3000
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://127.0.0.1:3000/api/proxy/control/status"]
+      interval: 30s
+      timeout: 5s
+      retries: 3

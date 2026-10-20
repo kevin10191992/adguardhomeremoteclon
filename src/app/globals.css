@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --sat: env(safe-area-inset-top, 0px);
+  --sab: env(safe-area-inset-bottom, 0px);
+  --sal: env(safe-area-inset-left, 0px);
+  --sar: env(safe-area-inset-right, 0px);
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  overscroll-behavior-y: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+body {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.light body {
+  background-color: #f2f2f7;
+  color: #000000;
+}
+
+/* Safe Area Inset Helpers */
+.pt-safe {
+  padding-top: max(12px, env(safe-area-inset-top));
+}
+
+.pb-safe {
+  padding-bottom: max(16px, env(safe-area-inset-bottom));
+}
+
+.pb-safe-tab {
+  padding-bottom: calc(max(16px, env(safe-area-inset-bottom)) + 64px);
+}
+
+/* Glassmorphism iOS Blur */
+.ios-blur-dark {
+  background-color: rgba(18, 18, 18, 0.78);
+  backdrop-filter: blur(24px) saturate(190%);
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
+}
+
+.ios-blur-light {
+  background-color: rgba(246, 246, 246, 0.82);
+  backdrop-filter: blur(24px) saturate(190%);
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
+}
+
+/* iOS Grouped Inset Card */
+.ios-card {
+  border-radius: 16px;
+  background-color: #1c1c1e;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.light .ios-card {
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.ios-card-subtle {
+  background-color: #2c2c2e;
+}
+
+.light .ios-card-subtle {
+  background-color: #f2f2f7;
+}
+
+/* Hide scrollbars but allow scrolling */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* iOS active tap effect */
+.ios-tap-active {
+  transition: transform 0.1s ease, opacity 0.1s ease;
+}
+.ios-tap-active:active {
+  transform: scale(0.97);
+  opacity: 0.85;
+}

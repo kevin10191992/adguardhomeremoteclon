@@ -51,14 +51,18 @@ export function ServerStatusCard() {
                 Estado del Servidor
               </div>
               <div className="text-sm font-semibold text-white flex items-center gap-1.5">
-                {isProtected ? "Protección Activa" : "Protección Desactivada"}
+                {status
+                  ? isProtected
+                    ? "Protección Activa"
+                    : "Protección Desactivada"
+                  : "Servidor No Conectado"}
               </div>
             </div>
           </div>
 
           <div className="text-right">
             <span className="text-[11px] bg-zinc-800/80 text-zinc-300 px-2 py-0.5 rounded-md border border-zinc-700/40">
-              {status?.version || "v0.107"}
+              {status?.version || "Sin versión"}
             </span>
           </div>
         </div>
@@ -68,7 +72,9 @@ export function ServerStatusCard() {
           <div className="flex items-center gap-2">
             <Server size={14} className="text-zinc-400 flex-shrink-0" />
             <span className="text-zinc-300 truncate">
-              {status?.dns_addresses?.[0] || activeInstance.url.replace(/^https?:\/\//, "")}
+              {status?.dns_addresses?.[0] ||
+                activeInstance.url.replace(/^https?:\/\//, "") ||
+                "Sin URL configurada"}
             </span>
           </div>
           <div className="flex items-center gap-2 justify-end">
